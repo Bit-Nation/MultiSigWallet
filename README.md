@@ -46,15 +46,24 @@ npm test
 npm run test-dapp
 ```
 
+### Geth instructions
+
+1. Get the geth client
+2. Start the geth node with `geth --rinkeby --fast --rpc` - which will run the rinkeby testnet light node with the json rpc enabled
+3. Run `geth attach ipc://path/to/the/ipc/file` When you start you start your ethereum node it will print a line which will look like this: `INFO [03-13|21:34:12] IPC endpoint opened                      url=/Users/florian/Library/Ethereum/rinkeby/geth.ipc`. That's where the `.ipc` file is located. 
+4. In the javascript console run: `personal.newAccount()` and enter a password
+5. When you got the account make sure to send one or two test ether to your account. 
+6. Unlock your account `personal.unlockAccount("ACCOUNT_ADDRESS")` so that truffle can deploy the contract's
+
 Deploy
 -------------
 ### Deploy multisig wallet:
 ```
-truffle migrate <account1,account2,...,accountN> <requiredConfirmations>
+node_modules/.bin/truffle migrate <account1,account2,...,accountN> <requiredConfirmations>
 ```
 ### Deploy multisig wallet with daily limit:
 ```
-truffle migrate <account1,account2,...,accountN> <requiredConfirmations> <dailyLimit>
+node_modules/.bin/truffle migrate <account1,account2,...,accountN> <requiredConfirmations> <dailyLimit>
 ```
 
 Limitations
